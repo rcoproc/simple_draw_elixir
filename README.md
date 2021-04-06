@@ -1,6 +1,9 @@
 # Draw
 
-**TODO: Add description**
+## Run 
+    mix run
+
+    iex -S mix
 
 ## Installation
 

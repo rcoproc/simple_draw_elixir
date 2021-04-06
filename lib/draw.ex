@@ -9,6 +9,15 @@ defmodule Draw do
 
   @defaults %{color: "black", shape: "circle"}
 
+  def start(_type, _args) do
+    IO.puts "Call 1"
+    Draw.call([shape: "circle", color: "black"])
+
+    IO.puts "Call 2"
+    Draw.call([color: "black", shape: "circle"])
+    Task.start(fn -> :timer.sleep(1000); IO.puts("call sleeping") end)
+  end
+
   @doc """
   Call method print a string "Draw a black circle"
 
@@ -20,7 +29,6 @@ defmodule Draw do
       
       Draw a black circle
   """
-
   def call(options \\ [] ) do
     %{color: color, shape: shape} = Enum.into(options, @defaults)
     IO.inspect(Enum.into(options, @defaults))
@@ -28,8 +36,3 @@ defmodule Draw do
   end
 end
 
-IO.puts "Call 1"
-Draw.call([shape: "circle", color: "black"])
-
-IO.puts "Call 2"
-Draw.call([color: "black", shape: "circle"])
